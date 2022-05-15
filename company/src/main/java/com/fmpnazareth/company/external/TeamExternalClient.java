@@ -26,6 +26,4 @@ public interface TeamExternalClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/teams/{id}")
     Optional<Team> getTeam(@PathVariable("id") String id);
-
-    void createRole(Role newRole);
 }

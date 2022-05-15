@@ -1,5 +1,6 @@
 package com.fmpnazareth.company.service;
 
+import com.fmpnazareth.company.api.resource.RoleResource;
 import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.User;
 import com.fmpnazareth.company.external.TeamExternalClient;
@@ -34,15 +35,15 @@ public class CompanyService {
     }
 
     @SneakyThrows
-    public void createRole(String roleName) {
+    public void createRole(RoleResource roleResource) {
         Role newRole = Role.builder()
-                .name(roleName)
+                .name(roleResource.getName())
                 .build();
 
         Example<Role> roleExample = Example.of(newRole);
 
         if(!roleRepository.findAll(roleExample).isEmpty()){
-            String errorMsg = String.format("Role %s already exists", roleName);
+            String errorMsg = String.format("Role %s already exists", roleResource.getName());
             log.error(errorMsg);
             throw new ValidationException(errorMsg);
         }
