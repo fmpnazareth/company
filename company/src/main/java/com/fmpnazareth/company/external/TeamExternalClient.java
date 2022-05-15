@@ -1,5 +1,6 @@
 package com.fmpnazareth.company.external;
 
+import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.Team;
 import com.fmpnazareth.company.domain.User;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,4 +26,6 @@ public interface TeamExternalClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/teams/{id}")
     Optional<Team> getTeam(@PathVariable("id") String id);
+
+    void createRole(Role newRole);
 }

@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class Role {
     @Id
     private int id;
-    private String code;
     private String name;
 
 }
