@@ -1,19 +1,15 @@
 package com.fmpnazareth.company.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "tb_user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class User {
-    @Id
     private String id;
     private String firstName;
     private String lastName;

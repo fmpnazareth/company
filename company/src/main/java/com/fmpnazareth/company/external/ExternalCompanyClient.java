@@ -1,6 +1,5 @@
 package com.fmpnazareth.company.external;
 
-import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.Team;
 import com.fmpnazareth.company.domain.User;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -13,7 +12,7 @@ import java.util.Optional;
 
 @FeignClient(name = "externalCompany",
         url = "https://cgjresszgg.execute-api.eu-west-1.amazonaws.com")
-public interface TeamExternalClient {
+public interface ExternalCompanyClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/users")
     List<User> getUsers();
