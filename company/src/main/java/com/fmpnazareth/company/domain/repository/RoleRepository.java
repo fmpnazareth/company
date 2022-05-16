@@ -1,6 +1,6 @@
-package com.fmpnazareth.company.repository;
+package com.fmpnazareth.company.domain.repository;
 
-import com.fmpnazareth.company.repository.domain.Role;
+import com.fmpnazareth.company.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {

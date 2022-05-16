@@ -1,11 +1,11 @@
-package com.fmpnazareth.company.service;
+package com.fmpnazareth.company.domain.service;
 
 import com.fmpnazareth.company.dto.User;
 import com.fmpnazareth.company.external.ExternalCompanyClient;
-import com.fmpnazareth.company.repository.RoleRepository;
-import com.fmpnazareth.company.repository.TeamUserRoleRepository;
-import com.fmpnazareth.company.repository.domain.Role;
-import com.fmpnazareth.company.repository.domain.TeamUserRole;
+import com.fmpnazareth.company.domain.repository.RoleRepository;
+import com.fmpnazareth.company.domain.repository.TeamUserRoleRepository;
+import com.fmpnazareth.company.domain.Role;
+import com.fmpnazareth.company.domain.TeamUserRole;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

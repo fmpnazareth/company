@@ -1,9 +1,9 @@
-package com.fmpnazareth.company.api.controller;
+package com.fmpnazareth.company.domain.controller;
 
 import com.fmpnazareth.company.dto.User;
-import com.fmpnazareth.company.repository.domain.Role;
-import com.fmpnazareth.company.repository.domain.TeamUserRole;
-import com.fmpnazareth.company.service.CompanyService;
+import com.fmpnazareth.company.domain.Role;
+import com.fmpnazareth.company.domain.TeamUserRole;
+import com.fmpnazareth.company.domain.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

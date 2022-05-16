@@ -1,8 +1,8 @@
 package com.fmpnazareth.company.config;
 
 import com.fmpnazareth.company.external.ExternalCompanyClient;
-import com.fmpnazareth.company.repository.TeamUserRoleRepository;
-import com.fmpnazareth.company.repository.domain.TeamUserRole;
+import com.fmpnazareth.company.domain.repository.TeamUserRoleRepository;
+import com.fmpnazareth.company.domain.TeamUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
