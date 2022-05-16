@@ -1,4 +1,4 @@
-package com.fmpnazareth.company.domain;
+package com.fmpnazareth.company.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

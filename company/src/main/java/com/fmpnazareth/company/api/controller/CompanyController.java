@@ -1,7 +1,7 @@
 package com.fmpnazareth.company.api.controller;
 
 import com.fmpnazareth.company.api.resource.RoleResource;
-import com.fmpnazareth.company.domain.User;
+import com.fmpnazareth.company.dto.User;
 import com.fmpnazareth.company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

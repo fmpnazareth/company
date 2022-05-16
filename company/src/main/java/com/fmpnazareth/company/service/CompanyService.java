@@ -2,7 +2,7 @@ package com.fmpnazareth.company.service;
 
 import com.fmpnazareth.company.api.resource.RoleResource;
 import com.fmpnazareth.company.repository.domain.Role;
-import com.fmpnazareth.company.domain.User;
+import com.fmpnazareth.company.dto.User;
 import com.fmpnazareth.company.external.ExternalCompanyClient;
 import com.fmpnazareth.company.repository.RoleRepository;
 import lombok.SneakyThrows;

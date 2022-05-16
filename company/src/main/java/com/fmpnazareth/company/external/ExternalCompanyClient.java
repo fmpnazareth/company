@@ -1,7 +1,7 @@
 package com.fmpnazareth.company.external;
 
-import com.fmpnazareth.company.domain.Team;
-import com.fmpnazareth.company.domain.User;
+import com.fmpnazareth.company.dto.Team;
+import com.fmpnazareth.company.dto.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
