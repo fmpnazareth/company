@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_user_team_role")
+@Table(name = "tb_membership")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TeamUserRole {
+public class Membership {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

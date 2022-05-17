@@ -2,7 +2,7 @@ package com.fmpnazareth.company.domain.controller;
 
 import com.fmpnazareth.company.dto.User;
 import com.fmpnazareth.company.domain.Role;
-import com.fmpnazareth.company.domain.TeamUserRole;
+import com.fmpnazareth.company.domain.Membership;
 import com.fmpnazareth.company.domain.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class CompanyController {
     }
 
     @GetMapping(value = "/memberships")
-    public ResponseEntity<List<TeamUserRole>> getMemberships() {
+    public ResponseEntity<List<Membership>> getMemberships() {
         return ResponseEntity.ok(this.companyService.getMemberships());
     }
 
@@ -59,8 +59,8 @@ public class CompanyController {
     }
 
     @GetMapping(value = "/memberships/{roleId}")
-    public ResponseEntity<List<TeamUserRole>> lookUpMembershipForRole(@PathVariable(value = "roleId", required = true) Integer roleId) {
-        List<TeamUserRole> membershipResourceList = companyService.lookUpMembershipForRole(roleId);
+    public ResponseEntity<List<Membership>> lookUpMembershipForRole(@PathVariable(value = "roleId", required = true) Integer roleId) {
+        List<Membership> membershipResourceList = companyService.lookUpMembershipForRole(roleId);
 
         if(membershipResourceList == null){
             return ResponseEntity.noContent().build();

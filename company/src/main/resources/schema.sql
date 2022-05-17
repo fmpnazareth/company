@@ -5,9 +5,9 @@ CREATE TABLE tb_role (
   name VARCHAR(50) NOT NULL
 );
 
-DROP TABLE IF EXISTS tb_user_team_role;
+DROP TABLE IF EXISTS tb_membership;
 
-CREATE TABLE tb_user_team_role (
+CREATE TABLE tb_membership (
   id INT IDENTITY NOT NULL PRIMARY KEY,
   user_id VARCHAR(50) NOT NULL,
   team_id VARCHAR(50) NULL,

@@ -3,9 +3,9 @@ package com.fmpnazareth.company.domain.service;
 import com.fmpnazareth.company.dto.User;
 import com.fmpnazareth.company.external.ExternalCompanyClient;
 import com.fmpnazareth.company.domain.repository.RoleRepository;
-import com.fmpnazareth.company.domain.repository.TeamUserRoleRepository;
+import com.fmpnazareth.company.domain.repository.MembershipRepository;
 import com.fmpnazareth.company.domain.Role;
-import com.fmpnazareth.company.domain.TeamUserRole;
+import com.fmpnazareth.company.domain.Membership;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class CompanyService {
     RoleRepository roleRepository;
 
     @Autowired
-    TeamUserRoleRepository teamUserRoleRepository;
+    MembershipRepository membershipRepository;
 
     public List<User> getUsers() {
         return externalCompanyClient.getUsers();
@@ -43,8 +43,8 @@ public class CompanyService {
         return roleRepository.findAll();
     }
 
-    public List<TeamUserRole> getMemberships() {
-        return teamUserRoleRepository.findAll();
+    public List<Membership> getMemberships() {
+        return membershipRepository.findAll();
     }
 
     @SneakyThrows
@@ -80,13 +80,13 @@ public class CompanyService {
             throw new ValidationException(errorMsg);
         }
 
-        TeamUserRole teamUserRole = TeamUserRole.builder()
+        Membership membership = Membership.builder()
                 .userId(userId)
                 .teamId(teamId)
                 .build();
 
-        Example<TeamUserRole> teamUserRoleExample = Example.of(teamUserRole);
-        List<TeamUserRole> allUsersOfTeam = teamUserRoleRepository.findAll(teamUserRoleExample);
+        Example<Membership> teamUserRoleExample = Example.of(membership);
+        List<Membership> allUsersOfTeam = membershipRepository.findAll(teamUserRoleExample);
 
         if (allUsersOfTeam.isEmpty()) {
             String errorMsg = String.format("Not exists user with userId:%s and teamId:%s", userId, teamId);
@@ -96,21 +96,21 @@ public class CompanyService {
 
         allUsersOfTeam.stream().forEach(userOfTeam -> {
             userOfTeam.setRoleId(roleId);
-            teamUserRoleRepository.save(userOfTeam);
+            membershipRepository.save(userOfTeam);
         });
     }
 
     @SneakyThrows
     public String lookUpRoleForMembership(String userId, String teamId) {
 
-        TeamUserRole teamUserRole = TeamUserRole.builder()
+        Membership membership = Membership.builder()
                 .userId(userId)
                 .teamId(teamId)
                 .build();
 
-        Example<TeamUserRole> teamUserRoleExample = Example.of(teamUserRole);
+        Example<Membership> teamUserRoleExample = Example.of(membership);
 
-        List<TeamUserRole> allUsersOfTeam = teamUserRoleRepository.findAll(teamUserRoleExample)
+        List<Membership> allUsersOfTeam = membershipRepository.findAll(teamUserRoleExample)
                 .stream().filter(Objects::nonNull).filter(t -> t.getRoleId() != null).collect(Collectors.toList());
 
         if (allUsersOfTeam.isEmpty()) {
@@ -127,7 +127,7 @@ public class CompanyService {
 
     }
 
-    public List<TeamUserRole> lookUpMembershipForRole(Integer roleId) {
+    public List<Membership> lookUpMembershipForRole(Integer roleId) {
         Role newRole = Role.builder()
                 .id(roleId)
                 .build();
@@ -140,13 +140,13 @@ public class CompanyService {
             return null;
         }
 
-        TeamUserRole teamUserRole = TeamUserRole.builder()
+        Membership membership = Membership.builder()
                 .roleId(roleId)
                 .build();
 
-        Example<TeamUserRole> teamUserRoleExample = Example.of(teamUserRole);
+        Example<Membership> teamUserRoleExample = Example.of(membership);
 
-        List<TeamUserRole> membershipList = teamUserRoleRepository.findAll(teamUserRoleExample);
+        List<Membership> membershipList = membershipRepository.findAll(teamUserRoleExample);
 
         if (membershipList.isEmpty()) {
             return null;

@@ -1,8 +1,8 @@
 package com.fmpnazareth.company.config;
 
 import com.fmpnazareth.company.external.ExternalCompanyClient;
-import com.fmpnazareth.company.domain.repository.TeamUserRoleRepository;
-import com.fmpnazareth.company.domain.TeamUserRole;
+import com.fmpnazareth.company.domain.repository.MembershipRepository;
+import com.fmpnazareth.company.domain.Membership;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class InitialBaseConfig {
     private ExternalCompanyClient externalCompanyClient;
 
     @Autowired
-    private TeamUserRoleRepository teamUserRoleRepository;
+    private MembershipRepository membershipRepository;
 
     @PostConstruct
     public void initialize(){
@@ -33,7 +33,7 @@ public class InitialBaseConfig {
                 .filter(team -> team.get().getTeamMemberIds() != null)
                 .forEach(team -> {
                     team.get().getTeamMemberIds().stream().forEach(user -> {
-                        teamUserRoleRepository.save(TeamUserRole
+                        membershipRepository.save(Membership
                                 .builder()
                                 .teamId(team.get().getId())
                                 .userId(user)
@@ -44,15 +44,15 @@ public class InitialBaseConfig {
 
     private void initializeUsersWithoutTeam() {
         externalCompanyClient.getUsers().stream().forEach(user -> {
-            Example<TeamUserRole> teamUserRoleExample = Example
-                    .of(TeamUserRole
+            Example<Membership> teamUserRoleExample = Example
+                    .of(Membership
                             .builder()
                             .userId(user.getId())
                             .build());
-            List<TeamUserRole> userTeams = teamUserRoleRepository.findAll(teamUserRoleExample);
+            List<Membership> userTeams = membershipRepository.findAll(teamUserRoleExample);
 
             if(userTeams.isEmpty()){
-                teamUserRoleRepository.save(TeamUserRole
+                membershipRepository.save(Membership
                         .builder()
                         .userId(user.getId())
                         .build());
