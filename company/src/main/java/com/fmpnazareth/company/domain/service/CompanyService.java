@@ -50,12 +50,6 @@ public class CompanyService {
     @SneakyThrows
     public void createRole(String roleName) {
 
-        if (roleName.isEmpty()) {
-            String errorMsg = String.format("Role resource name invalid");
-            log.error(errorMsg);
-            throw new ValidationException(errorMsg);
-        }
-
         Role newRole = Role.builder()
                 .name(roleName)
                 .build();
