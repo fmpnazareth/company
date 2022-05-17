@@ -101,7 +101,7 @@ public class CompanyService {
     }
 
     @SneakyThrows
-    public String lookUpRoleForMembership(String userId, String teamId) {
+    public Role lookUpRoleForMembership(String userId, String teamId) {
 
         Membership membership = Membership.builder()
                 .userId(userId)
@@ -123,7 +123,7 @@ public class CompanyService {
             return null;
         }
 
-        return role.get().getName();
+        return role.get();
 
     }
 

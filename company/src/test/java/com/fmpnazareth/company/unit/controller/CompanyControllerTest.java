@@ -1,5 +1,6 @@
 package com.fmpnazareth.company.unit.controller;
 
+import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.service.CompanyService;
 import com.fmpnazareth.company.external.ExternalCompanyClient;
 import lombok.SneakyThrows;
@@ -73,7 +74,8 @@ class CompanyControllerTest {
 						.param("teamId", "team1"))
 				.andExpect(status().isNoContent());
 
-		when(companyService.lookUpRoleForMembership(any(), anyString())).thenReturn("RoleName");
+
+		when(companyService.lookUpRoleForMembership(any(), anyString())).thenReturn(Role.builder().build());
 
 		mvc.perform(get("/v1/company/role")
 						.param("userId", "user1")

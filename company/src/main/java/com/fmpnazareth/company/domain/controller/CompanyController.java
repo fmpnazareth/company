@@ -47,9 +47,9 @@ public class CompanyController {
     }
 
     @GetMapping(value = "/role")
-    public ResponseEntity<String> lookUpRoleForMembership(@RequestParam(value = "userId", required = true) String userId,
+    public ResponseEntity<Role> lookUpRoleForMembership(@RequestParam(value = "userId", required = true) String userId,
                                                         @RequestParam(value = "teamId", required = true) String teamId) {
-        String roleName = companyService.lookUpRoleForMembership(userId, teamId);
+        Role roleName = companyService.lookUpRoleForMembership(userId, teamId);
 
         if(roleName == null){
             return ResponseEntity.noContent().build();
