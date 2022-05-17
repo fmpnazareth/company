@@ -4,6 +4,7 @@ import com.fmpnazareth.company.domain.Membership;
 import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.repository.MembershipRepository;
 import com.fmpnazareth.company.domain.repository.RoleRepository;
+import com.fmpnazareth.company.dto.Team;
 import com.fmpnazareth.company.dto.User;
 import com.fmpnazareth.company.external.ExternalCompanyClient;
 import lombok.SneakyThrows;
@@ -33,6 +34,10 @@ public class CompanyService {
 
     public List<User> getUsers() {
         return externalCompanyClient.getUsers();
+    }
+
+    public List<Team> getTeams() {
+        return externalCompanyClient.getTeams();
     }
 
     public Optional<User> getUser(String id) {

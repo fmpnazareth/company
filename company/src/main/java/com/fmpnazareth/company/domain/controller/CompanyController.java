@@ -3,6 +3,7 @@ package com.fmpnazareth.company.domain.controller;
 import com.fmpnazareth.company.domain.Membership;
 import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.service.CompanyService;
+import com.fmpnazareth.company.dto.Team;
 import com.fmpnazareth.company.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,11 @@ public class CompanyController {
         return ResponseEntity.ok(this.companyService.getUsers());
     }
 
+    @GetMapping(value = "/teams")
+    public ResponseEntity<List<Team>> getTeams() {
+        return ResponseEntity.ok(this.companyService.getTeams());
+    }
+
     @GetMapping(value = "/roles")
     public ResponseEntity<List<Role>> getRoles() {
         return ResponseEntity.ok(this.companyService.getRoles());
@@ -33,7 +39,7 @@ public class CompanyController {
     }
 
     @PutMapping(value = "/role/{roleName}")
-    public ResponseEntity<User> createRole(@PathVariable(value = "roleName", required = true) String roleName) {
+    public ResponseEntity<Void> createRole(@PathVariable(value = "roleName", required = true) String roleName) {
         companyService.createRole(roleName);
         return ResponseEntity.ok().build();
     }
