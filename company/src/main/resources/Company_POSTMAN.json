@@ -109,6 +109,15 @@
 				"url": "http://localhost:8080/v1/company/memberships/1"
 			},
 			"response": []
+		},
+		{
+			"name": "List teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/v1/company/teams"
+			},
+			"response": []
 		}
 	]
 }
