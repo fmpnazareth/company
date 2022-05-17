@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "c6964951-4380-443a-a81b-b8dc9061632f",
+		"name": "CompanyCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Role",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/v1/company/role/ Developer2"
+			},
+			"response": []
+		},
+		{
+			"name": "List Roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/v1/company/roles"
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Member",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/company/role/assign/4?userId=e0dba3dc-313d-4648-bd9c-4ddc8b189e84&teamId=7676a4bf-adfe-415c-941b-1739af07039b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"company",
+						"role",
+						"assign",
+						"4"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "userId",
+							"value": "e0dba3dc-313d-4648-bd9c-4ddc8b189e84"
+						},
+						{
+							"key": "teamId",
+							"value": "7676a4bf-adfe-415c-941b-1739af07039b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Look Up Role",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/company/role?userId=e0dba3dc-313d-4648-bd9c-4ddc8b189e84&teamId=7676a4bf-adfe-415c-941b-1739af07039b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"company",
+						"role"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "e0dba3dc-313d-4648-bd9c-4ddc8b189e84"
+						},
+						{
+							"key": "teamId",
+							"value": "7676a4bf-adfe-415c-941b-1739af07039b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Look Up Memberships",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/v1/company/memberships/1"
+			},
+			"response": []
+		}
+	]
+}

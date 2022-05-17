@@ -2,9 +2,8 @@ package com.fmpnazareth.company.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "tb_role")
@@ -14,7 +13,8 @@ import javax.persistence.Table;
 @Builder
 public class Role {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
 
 }
