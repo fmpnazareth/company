@@ -14,9 +14,6 @@ via FeignClient at project startup time. Then, all existing relationships betwee
 - Swagger Integration
 - JPA Validations
 
-### Future Improvements
-- Implement contract to update users and teams from extenal service
-
 ### Postman
 - Import Company_POSTMAN.json contained in the resources folder into the application
 
