@@ -8,9 +8,9 @@ The list of users and teams is originated by an external service that is accesse
 via FeignClient at project startup time. Then, all existing relationships between members and teams necessary for role management are created.
 
 ### Running documentation locally
-1. Open terminal and execute "./run.sh"
+1. Open terminal and execute "./run.sh" in root folder.
 
 ### Future Improvements
-Implement contract to update users and teams
+Implement contract to update users and teams from extenal service
 
 
