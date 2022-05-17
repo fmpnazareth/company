@@ -32,23 +32,23 @@ public class CompanyController {
         return ResponseEntity.ok(this.companyService.getMemberships());
     }
 
-    @PutMapping(value = "/role/{roleName}")
-    public ResponseEntity<User> createRole(@PathVariable(value = "roleName", required = true) String roleName) {
+    @PutMapping(value = "/role")
+    public ResponseEntity<User> createRole(@RequestParam(value = "roleName", required = true) String roleName) {
         companyService.createRole(roleName);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(value = "/role/assign/{roleId}/{userId}/{teamId}")
-    public ResponseEntity<Void> assignRole(@PathVariable(value = "roleId", required = true) Integer roleId,
-                                           @PathVariable(value = "userId", required = true) String userId,
-                                           @PathVariable(value = "teamId", required = true) String teamId) {
+    @PutMapping(value = "/role/assign")
+    public ResponseEntity<Void> assignRole(@RequestParam(value = "roleId", required = true) Integer roleId,
+                                           @RequestParam(value = "userId", required = true) String userId,
+                                           @RequestParam(value = "teamId", required = true) String teamId) {
         companyService.assignRole(roleId, userId, teamId);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(value = "/role/{userId}/{teamId}")
-    public ResponseEntity<String> lookUpRoleForMembership(@PathVariable(value = "userId", required = true) String userId,
-                                                        @PathVariable(value = "teamId", required = true) String teamId) {
+    @GetMapping(value = "/role")
+    public ResponseEntity<String> lookUpRoleForMembership(@RequestParam(value = "userId", required = true) String userId,
+                                                        @RequestParam(value = "teamId", required = true) String teamId) {
         String roleName = companyService.lookUpRoleForMembership(userId, teamId);
 
         if(roleName == null){
