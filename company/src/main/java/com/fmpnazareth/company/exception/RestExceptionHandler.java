@@ -9,10 +9,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.xml.bind.ValidationException;
 
 @RestControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler{
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ValidationException.class)
-    protected ResponseEntity<Object> handleValidationException(ValidationException exception){
+    protected ResponseEntity<Object> handleValidationException(ValidationException exception) {
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST,
                 exception.getMessage(),
                 exception);
