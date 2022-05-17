@@ -1,9 +1,9 @@
 package com.fmpnazareth.company.domain.controller;
 
-import com.fmpnazareth.company.dto.User;
-import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.Membership;
+import com.fmpnazareth.company.domain.Role;
 import com.fmpnazareth.company.domain.service.CompanyService;
+import com.fmpnazareth.company.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,19 +39,16 @@ public class CompanyController {
     }
 
     @PutMapping(value = "/role/assign/{roleId}")
-    public ResponseEntity<Void> assignRole(@PathVariable(value = "roleId", required = true) Integer roleId,
-                                           @RequestParam(value = "userId", required = true) String userId,
-                                           @RequestParam(value = "teamId", required = true) String teamId) {
+    public ResponseEntity<Void> assignRole(@PathVariable(value = "roleId", required = true) Integer roleId, @RequestParam(value = "userId", required = true) String userId, @RequestParam(value = "teamId", required = true) String teamId) {
         companyService.assignRole(roleId, userId, teamId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(value = "/role")
-    public ResponseEntity<Role> lookUpRoleForMembership(@RequestParam(value = "userId", required = true) String userId,
-                                                        @RequestParam(value = "teamId", required = true) String teamId) {
+    public ResponseEntity<Role> lookUpRoleForMembership(@RequestParam(value = "userId", required = true) String userId, @RequestParam(value = "teamId", required = true) String teamId) {
         Role roleName = companyService.lookUpRoleForMembership(userId, teamId);
 
-        if(roleName == null){
+        if (roleName == null) {
             return ResponseEntity.noContent().build();
         }
 
@@ -62,7 +59,7 @@ public class CompanyController {
     public ResponseEntity<List<Membership>> lookUpMembershipForRole(@PathVariable(value = "roleId", required = true) Integer roleId) {
         List<Membership> membershipResourceList = companyService.lookUpMembershipForRole(roleId);
 
-        if(membershipResourceList == null){
+        if (membershipResourceList == null) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(membershipResourceList);

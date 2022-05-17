@@ -29,76 +29,76 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 class CompanyControllerTest {
 
-	@Autowired
-	private MockMvc mvc;
+    @Autowired
+    private MockMvc mvc;
 
-	@MockBean
-	CompanyService companyService;
+    @MockBean
+    CompanyService companyService;
 
-	@MockBean
-	ExternalCompanyClient externalCompanyClient;
-
-
-	@SneakyThrows
-	@Test
-	void testCreateRole(){
-		mvc.perform(put("/v1/company/role/Developer 2"))
-				.andExpect(status().isOk());
-
-		mvc.perform(put("/v1/company/role"))
-				.andExpect(status().isMethodNotAllowed());
-	}
-
-	@SneakyThrows
-	@Test
-	void testAssignRole(){
-		mvc.perform(put("/v1/company/role/assign/1")
-						.param("userId", "user1")
-						.param("teamId", "team1"))
-				.andExpect(status().isOk());
-
-		mvc.perform(put("/v1/company/role/assign/not_number")
-						.param("userId", "user1")
-						.param("teamId", "team1"))
-				.andExpect(status().isBadRequest());
-	}
-
-	@SneakyThrows
-	@Test
-	void testeLookUpRoleForMembership(){
-		mvc.perform(get("/v1/company/role")
-						.param("userId", "user1")
-						.param("teamId", "team1"))
-				.andExpect(status().isNoContent());
+    @MockBean
+    ExternalCompanyClient externalCompanyClient;
 
 
-		when(companyService.lookUpRoleForMembership(any(), anyString())).thenReturn(Role.builder().build());
+    @SneakyThrows
+    @Test
+    void testCreateRole() {
+        mvc.perform(put("/v1/company/role/Developer 2"))
+                .andExpect(status().isOk());
 
-		mvc.perform(get("/v1/company/role")
-						.param("userId", "user1")
-						.param("teamId", "team1"))
-				.andExpect(status().isOk());
+        mvc.perform(put("/v1/company/role"))
+                .andExpect(status().isMethodNotAllowed());
+    }
 
-		mvc.perform(get("/v1/company/role")
-						.param("teamId", "team1"))
-				.andExpect(status().isBadRequest());
-	}
+    @SneakyThrows
+    @Test
+    void testAssignRole() {
+        mvc.perform(put("/v1/company/role/assign/1")
+                        .param("userId", "user1")
+                        .param("teamId", "team1"))
+                .andExpect(status().isOk());
 
-	@SneakyThrows
-	@Test
-	void testeLookUpMembershipForRole(){
+        mvc.perform(put("/v1/company/role/assign/not_number")
+                        .param("userId", "user1")
+                        .param("teamId", "team1"))
+                .andExpect(status().isBadRequest());
+    }
 
-		when(companyService.lookUpMembershipForRole(any())).thenReturn(null);
+    @SneakyThrows
+    @Test
+    void testeLookUpRoleForMembership() {
+        mvc.perform(get("/v1/company/role")
+                        .param("userId", "user1")
+                        .param("teamId", "team1"))
+                .andExpect(status().isNoContent());
 
-		mvc.perform(get("/v1/company/memberships/1"))
-				.andExpect(status().isNoContent());
 
-		when(companyService.lookUpMembershipForRole(any())).thenReturn(new ArrayList<>());
+        when(companyService.lookUpRoleForMembership(any(), anyString())).thenReturn(Role.builder().build());
 
-		mvc.perform(get("/v1/company/memberships/1"))
-				.andExpect(status().isOk());
+        mvc.perform(get("/v1/company/role")
+                        .param("userId", "user1")
+                        .param("teamId", "team1"))
+                .andExpect(status().isOk());
 
-		mvc.perform(get("/v1/company/memberships/not_number"))
-				.andExpect(status().isBadRequest());
-	}
+        mvc.perform(get("/v1/company/role")
+                        .param("teamId", "team1"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @SneakyThrows
+    @Test
+    void testeLookUpMembershipForRole() {
+
+        when(companyService.lookUpMembershipForRole(any())).thenReturn(null);
+
+        mvc.perform(get("/v1/company/memberships/1"))
+                .andExpect(status().isNoContent());
+
+        when(companyService.lookUpMembershipForRole(any())).thenReturn(new ArrayList<>());
+
+        mvc.perform(get("/v1/company/memberships/1"))
+                .andExpect(status().isOk());
+
+        mvc.perform(get("/v1/company/memberships/not_number"))
+                .andExpect(status().isBadRequest());
+    }
 }

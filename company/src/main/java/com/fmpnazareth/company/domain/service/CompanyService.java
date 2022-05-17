@@ -1,11 +1,11 @@
 package com.fmpnazareth.company.domain.service;
 
+import com.fmpnazareth.company.domain.Membership;
+import com.fmpnazareth.company.domain.Role;
+import com.fmpnazareth.company.domain.repository.MembershipRepository;
+import com.fmpnazareth.company.domain.repository.RoleRepository;
 import com.fmpnazareth.company.dto.User;
 import com.fmpnazareth.company.external.ExternalCompanyClient;
-import com.fmpnazareth.company.domain.repository.RoleRepository;
-import com.fmpnazareth.company.domain.repository.MembershipRepository;
-import com.fmpnazareth.company.domain.Role;
-import com.fmpnazareth.company.domain.Membership;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,7 +113,7 @@ public class CompanyService {
 
         Optional<Role> role = roleRepository.findById(allUsersOfTeam.get(0).getRoleId());
 
-        if(role.isEmpty()){
+        if (role.isEmpty()) {
             return null;
         }
 
