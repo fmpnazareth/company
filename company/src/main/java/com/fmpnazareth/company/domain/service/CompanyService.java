@@ -89,7 +89,7 @@ public class CompanyService {
         List<Membership> allUsersOfTeam = membershipRepository.findAll(teamUserRoleExample);
 
         if (allUsersOfTeam.isEmpty()) {
-            String errorMsg = String.format("Not exists user with userId:%s and teamId:%s", userId, teamId);
+            String errorMsg = String.format("Not exists membership with userId:%s and teamId:%s", userId, teamId);
             log.error(errorMsg);
             throw new ValidationException(errorMsg);
         }

@@ -32,14 +32,14 @@ public class CompanyController {
         return ResponseEntity.ok(this.companyService.getMemberships());
     }
 
-    @PutMapping(value = "/role")
-    public ResponseEntity<User> createRole(@RequestParam(value = "roleName", required = true) String roleName) {
+    @PutMapping(value = "/role/{roleName}")
+    public ResponseEntity<User> createRole(@PathVariable(value = "roleName", required = true) String roleName) {
         companyService.createRole(roleName);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(value = "/role/assign")
-    public ResponseEntity<Void> assignRole(@RequestParam(value = "roleId", required = true) Integer roleId,
+    @PutMapping(value = "/role/assign/{roleId}")
+    public ResponseEntity<Void> assignRole(@PathVariable(value = "roleId", required = true) Integer roleId,
                                            @RequestParam(value = "userId", required = true) String userId,
                                            @RequestParam(value = "teamId", required = true) String teamId) {
         companyService.assignRole(roleId, userId, teamId);

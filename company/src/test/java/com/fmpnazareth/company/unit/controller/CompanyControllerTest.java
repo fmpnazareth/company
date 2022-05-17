@@ -42,25 +42,22 @@ class CompanyControllerTest {
 	@SneakyThrows
 	@Test
 	void testCreateRole(){
-		mvc.perform(put("/v1/company/role")
-						.param("roleName", "Developer2"))
+		mvc.perform(put("/v1/company/role/Developer 2"))
 				.andExpect(status().isOk());
 
 		mvc.perform(put("/v1/company/role"))
-				.andExpect(status().isBadRequest());
+				.andExpect(status().isMethodNotAllowed());
 	}
 
 	@SneakyThrows
 	@Test
 	void testAssignRole(){
-		mvc.perform(put("/v1/company/role/assign")
-						.param("roleId", "1")
+		mvc.perform(put("/v1/company/role/assign/1")
 						.param("userId", "user1")
 						.param("teamId", "team1"))
 				.andExpect(status().isOk());
 
-		mvc.perform(put("/v1/company/role/assign")
-						.param("roleId", "not_number")
+		mvc.perform(put("/v1/company/role/assign/not_number")
 						.param("userId", "user1")
 						.param("teamId", "team1"))
 				.andExpect(status().isBadRequest());
